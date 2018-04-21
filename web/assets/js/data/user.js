@@ -1,7 +1,7 @@
 /**
  * Login function
  */
-login = function () {
+signIn = function () {
     var data = {username: $('#username').val(), password: $('#password').val()};
     if (data.username === '' || data.password === '') {
         alert("please fill the username and password field completely");
@@ -12,26 +12,27 @@ login = function () {
             // login success
             localStorage.setItem("auth", json.data.auth);
             localStorage.setItem("username", $('#username').val());
+            dataExchange('/v1/auth/permission', 'get', {
+                mode: 'summary',
+                condition: 'user',
+                value: localStorage.getItem('username')
+            }, function (status, json) {
+                if (status === 200) {
+                    var permissions = json.data.permissions;
+                    var result = '';
+                    for (var i = 0; i < permissions.length; i++) {
+                        result += permissions[0].name + "|";
+                    }
+                    localStorage.setItem("permissions", result);
+                    window.location.href = "index.html";
+                    return;
+                }
+                // log out when get permissions failed
+                logout();
+            });
             return;
         }
         alert(json.message);
-    });
-    dataExchange('/v1/auth/permission', 'get', {
-        mode: 'summary',
-        condition: 'user',
-        value: localStorage.getItem('username')
-    }, function (status, json) {
-        if (status === 200) {
-            var permissions = json.data.permissions;
-            var result = '';
-            for (var i = 0; i < permissions.length; i++) {
-                result += permissions[0].name + "|";
-            }
-            localStorage.setItem("permissions", result);
-            return;
-        }
-        // log out when get permissions failed
-        logout();
     });
 };
 
@@ -43,6 +44,7 @@ logout = function () {
         if (status === 204) {
             // logout success
             localStorage.clear();
+            window.location.href = "login.html";
         }
     });
 };
