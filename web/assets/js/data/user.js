@@ -21,7 +21,7 @@ signIn = function () {
                     var permissions = json.data.permissions;
                     var result = '';
                     for (var i = 0; i < permissions.length; i++) {
-                        result += permissions[0].name + "|";
+                        result += permissions[i].name + "|";
                     }
                     localStorage.setItem("permissions", result);
                     window.location.href = "index.html";
