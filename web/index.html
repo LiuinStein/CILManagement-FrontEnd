@@ -117,7 +117,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="ti-settings"></i>
                                 <p class="notification">5</p>
-                                <p>Notifications</p>
+                                <p>Functions</p>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -182,9 +182,6 @@
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="assets/js/paper-dashboard.js"></script>
 
@@ -195,15 +192,6 @@
     $(document).ready(function () {
 
         demo.initChartist();
-
-        $.notify({
-            icon: 'ti-gift',
-            message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
-
-        }, {
-            type: 'success',
-            timer: 4000
-        });
 
         localStorage.setItem("activeBar", "welcome");
 
