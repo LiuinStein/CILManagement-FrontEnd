@@ -16,6 +16,23 @@ login = function () {
         }
         alert(json.message);
     });
+    dataExchange('/v1/auth/permission', 'get', {
+        mode: 'summary',
+        condition: 'user',
+        value: localStorage.getItem('username')
+    }, function (status, json) {
+        if (status === 200) {
+            var permissions = json.data.permissions;
+            var result = '';
+            for (var i = 0; i < permissions.length; i++) {
+                result += permissions[0].name + "|";
+            }
+            localStorage.setItem("permissions", result);
+            return;
+        }
+        // log out when get permissions failed
+        logout();
+    });
 };
 
 /**
