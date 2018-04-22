@@ -56,6 +56,7 @@ functionURIMap = {
     "En-DisableAccount": "en-disable-user.html",
     "DeleteAccount": "delete-user.html",
     "InitializePassword": "init-password.html",
+    "QueryMemberInfo": "query-user.html",
     "paper": "https://mail.163.com/"
 };
 

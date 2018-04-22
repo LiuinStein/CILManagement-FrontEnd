@@ -184,3 +184,29 @@ userEnabled = function () {
         alert(json.message);
     });
 };
+
+queryUser = function () {
+    $("#result").empty();
+    dataExchange('/v1/user/info', 'GET', {
+        "mode": "all",
+        "condition": $("#condition").val(),
+        "value": $("#value").val()
+    }, function (status, json) {
+        if (status === 200) {
+            user = json.data.users;
+            for (var i = 0; i < user.length; i++) {
+                var html = "<tr>" +
+                    "<td>" + user[i].id + "</td>" +
+                    "<td>" + user[i].name + "</td>" +
+                    "<td>" + (user[i].gender === 0 ? "male" : "female") + "</td>" +
+                    "<td>" + user[i].email + "</td>" +
+                    "<td>" + user[i].phone + "</td>" +
+                    "<td>" + user[i].achievement + "</td>" +
+                    "</tr>";
+                $("#result").append(html);
+            }
+            return;
+        }
+        alert(json.message);
+    });
+};
