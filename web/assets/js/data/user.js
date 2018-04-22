@@ -148,3 +148,9 @@ register = function () {
         alert(json.message);
     })
 };
+
+deleteUser = function () {
+    dataExchange('/v1/user/', 'DELETE', JSON.stringify({"id":$("#username").val()}), function (status, json) {
+        alert("user has been deleted");
+    })
+};

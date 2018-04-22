@@ -52,6 +52,7 @@ functionURIMap = {
     "welcome": "welcome.html",
     "SignUp": "sign-up.html",
     "ModifyMemberInfo": "modify-user.html",
+    "DeleteAccount": "delete-user.html",
     "paper": "https://mail.163.com/"
 //         "DeleteAccount":
 // "ModifyMemberInfo":
