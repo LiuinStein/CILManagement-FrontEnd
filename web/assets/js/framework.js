@@ -50,8 +50,9 @@ idPermissionTable = {
 
 functionURIMap = {
     "welcome": "welcome.html",
+    "SignUp": "sign-up.html",
     "ModifyMemberInfo": "modify-user.html",
-    "paper":"https://mail.163.com/"
+    "paper": "https://mail.163.com/"
 //         "DeleteAccount":
 // "ModifyMemberInfo":
 // "ModifyPassword":

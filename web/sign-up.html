@@ -47,7 +47,7 @@
                                     <div class="col-md-5">
                                         <div class="form-group">
                                             <label>User ID</label>
-                                            <input id="username" type="text" class="form-control border-input" disabled
+                                            <input id="username" type="text" class="form-control border-input"
                                                    placeholder="user id" value="">
                                         </div>
                                     </div>
@@ -94,16 +94,11 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Birthday</label>
-                                            <label for="birthday"></label>
-                                            <input id="birthday" type="date" class="form-control border-input" value="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Enroll time</label>
-                                            <label for="enroll"></label>
-                                            <input id="enroll" type="date" class="form-control border-input" value="">
+                                            <label>Role</label>
+                                            <label for="role"></label>
+                                            <select id="role" class="form-control border-input">
+
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -111,6 +106,13 @@
                                             <label>Exit time</label>
                                             <label for="exit"></label>
                                             <input id="exit" type="date" class="form-control border-input" value="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Default password</label>
+                                            <label for="password"></label>
+                                            <input id="password" type="text" class="form-control border-input" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -131,18 +133,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Achievement</label>
-                                            <textarea id="achievement" rows="5" class="form-control border-input"
-                                                      placeholder="Here can be your achievements"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="text-center">
-                                    <a onclick="updateUserInfo()" class="btn btn-info btn-fill btn-wd">Update Profile</a>
+                                    <a onclick="register()" class="btn btn-info btn-fill btn-wd">Sign up</a>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
@@ -178,7 +170,7 @@
 <script src="assets/js/data/data.js"></script>
 <script src="assets/js/data/user.js"></script>
 <script>
-    loadUserInfo(localStorage.getItem("username"));
+    loadRoles();
 </script>
 
 </html>

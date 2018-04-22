@@ -101,6 +101,18 @@ loadUserInfo = function (id) {
     });
 };
 
+loadRoles = function () {
+    dataExchange('/v1/auth/role', 'GET',{"condition":"all"}, function (status, json) {
+        if (status === 200) {
+            role = json.data.roles;
+            for (var i = 0; i < role.length; i++) {
+                $("#role").append('<option value="' + role[i].id + '">' + role[i].name + '</option>')
+            }
+            return;
+        }
+        alert(json.message);
+    })
+};
 
 updateUserInfo = function () {
     data = {
@@ -117,4 +129,22 @@ updateUserInfo = function () {
     dataExchange('/v1/user/info/', 'PUT', JSON.stringify(data), function (status, json) {
         alert(json.message);
     });
+};
+
+register = function () {
+    data = {
+        "id": $("#username").val(),
+        "name": $("#name").val(),
+        "password": "666666",
+        "enabled": true,
+        "role": $("#role").val(),
+        "department": 19,
+        "gender": $("#gender").val(),
+        "enroll_time": new Date(),
+        "email": $("#email").val(),
+        "phone": $("#phone").val()
+    };
+    dataExchange('/v1/user/', 'POST', JSON.stringify(data), function (status, json) {
+        alert(json.message);
+    })
 };
