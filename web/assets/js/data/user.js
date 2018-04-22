@@ -48,3 +48,73 @@ logout = function () {
         }
     });
 };
+
+/**
+ * Load college
+ */
+loadCollege = function () {
+    dataExchange('/v1/user/department', 'GET', {"condition": "college"}, function (status, json) {
+        if (status === 200) {
+            colleges = json.data.college;
+            for (var i = 0; i < colleges.length; i++) {
+                $("#college").append('<option value="' + colleges[i].id + '">' + colleges[i].name + '</option>')
+            }
+            return;
+        }
+        alert(json.message);
+    })
+};
+
+/**
+ * load classes by college id
+ */
+loadClass = function (college) {
+    dataExchange('/v1/user/department', 'GET', {"condition": "class", "value": college}, function (status, json) {
+        if (status === 200) {
+            classes = json.data.class;
+            for (var i = 0; i < classes.length; i++) {
+                $("#class").append('<option value="' + classes[i].id + '">' + classes[i].name + '</option>')
+            }
+            return;
+        }
+        alert(json.message);
+    });
+};
+
+
+loadUserInfo = function (id) {
+    dataExchange('/v1/user/info', 'GET', {"mode": "all", "condition": "id", "value": id}, function (status, json) {
+        if (status === 200) {
+            user = json.data.users[0];
+            $("#username").val(user.id);
+            $("#name").val(user.name);
+            $("#gender").val(user.gender);
+            $("#birthday").val(user.birthday);
+            $("#enroll").val(user.enrollTime);
+            $("#exit").val(user.exitTime);
+            $("#email").val(user.email);
+            $("#phone").val(user.phone);
+            $("#achievement").text(user.achievement);
+            return;
+        }
+        alert(json.message);
+    });
+};
+
+
+updateUserInfo = function () {
+    data = {
+        "id": $("#username").val(),
+        "name": $("#name").val(),
+        "gender": $("#gender").val(),
+        "enroll_time": $("#enroll").val(),
+        "exit_time": $("#exit").val(),
+        "birthday": $("#birthday").val(),
+        "email": $("#email").val(),
+        "phone": $("#phone").val(),
+        "achievement": $("#achievement").text()
+    };
+    dataExchange('/v1/user/info/', 'PUT', JSON.stringify(data), function (status, json) {
+        alert(json.message);
+    });
+};

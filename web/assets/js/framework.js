@@ -11,6 +11,13 @@ changeCategory = function (target) {
     $("#" + localStorage.getItem("activeBar")).removeClass("active");
     $("#activeBarName").text($("#" + target).addClass("active").text().trim());
     localStorage.setItem("activeBar", target);
+    $("#functionDropDown").empty();
+    if (target === "paper") {
+        loadFrameURI("paper");
+        $("#functionCount").text(0);
+        return;
+    }
+    loadFrameURI("welcome");
     loadFunctionsByPermission(target);
 };
 
@@ -26,25 +33,25 @@ popNotify = function (level, message) {
 
 idPermissionTable = {
     "welcome": {},
-    "personnel": {},
+    "personnel": {
+        "Sign up": "SignUp",
+        "Delete an account": "DeleteAccount",
+        "Modify member's info": "ModifyMemberInfo",
+        "Modify password": "ModifyPassword",
+        "Initialize password": "InitializePassword",
+        "Query member's info": "QueryMemberInfo",
+        "Enable or disable an account": "En-DisableAccount"
+    },
     "authorization": {},
     "project": {},
     "team": {},
     "resource": {}
 };
 
-permissionFunctionMap = {
-    "Sign up": "SignUp",
-    "Delete an account": "DeleteAccount",
-    "Modify member's info": "ModifyMemberInfo",
-    "Modify password": "ModifyPassword",
-    "Initialize password": "InitializePassword",
-    "Query member's info": "QueryMemberInfo",
-    "Enable/Disable an account": "En-DisableAccount"
-};
-
 functionURIMap = {
-    // "SignUp":
+    "welcome": "welcome.html",
+    "ModifyMemberInfo": "modify-user.html",
+    "paper":"https://mail.163.com/"
 //         "DeleteAccount":
 // "ModifyMemberInfo":
 // "ModifyPassword":
@@ -71,9 +78,8 @@ loadFunctionsByPermission = function (bar) {
     for (var i in idPermissionTable[bar]) {
         if (permissions.indexOf(i) >= 0) {
             functionCount++;
-            var name = idPermissionTable[bar][i];
-            var id = permissionFunctionMap[name];
-            var html = "<li id='" + id + "'><a onclick=\"loadFrameURI('" + id + "')\">" + name + "</a></li>";
+            var id = idPermissionTable[bar][i];
+            var html = "<li id='" + id + "'><a onclick=\"loadFrameURI('" + id + "')\">" + i + "</a></li>";
             $("#functionDropDown").append(html);
         }
     }

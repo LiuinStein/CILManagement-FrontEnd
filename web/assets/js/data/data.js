@@ -8,6 +8,10 @@ dataExchange = function (uri, method, inputData, completeFunction) {
         contentType: 'application/json',
         data: inputData,
         dataType: "json",
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        },
         async: true,
         complete: function (xhr) {
             completeFunction(xhr.status, xhr.responseJSON)
