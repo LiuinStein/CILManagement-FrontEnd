@@ -102,7 +102,7 @@ loadUserInfo = function (id) {
 };
 
 loadRoles = function () {
-    dataExchange('/v1/auth/role', 'GET',{"condition":"all"}, function (status, json) {
+    dataExchange('/v1/auth/role', 'GET', {"condition": "all"}, function (status, json) {
         if (status === 200) {
             role = json.data.roles;
             for (var i = 0; i < role.length; i++) {
@@ -150,13 +150,28 @@ register = function () {
 };
 
 deleteUser = function () {
-    dataExchange('/v1/user/', 'DELETE', JSON.stringify({"id":$("#username").val()}), function (status, json) {
+    dataExchange('/v1/user/', 'DELETE', JSON.stringify({"id": $("#username").val()}), function (status, json) {
         alert("user has been deleted");
     })
 };
 
 initPassword = function () {
-    dataExchange('/v1/user/password/', 'PATCH', JSON.stringify({"id":$("#username").val()}), function (status, json) {
+    dataExchange('/v1/user/password/', 'PATCH', JSON.stringify({"id": $("#username").val()}), function (status, json) {
+        alert(json.message);
+    });
+};
+
+changePassword = function () {
+    var old = $("#old").val();
+    var newp = $("#new1").val();
+    if (newp !== $("#new2").val()) {
+        alert("The new password is difference from the repeat new password");
+        return;
+    }
+    dataExchange('/v1/user/password/', 'PUT', JSON.stringify({
+        "old_password": old,
+        "new_password": newp
+    }), function (status, json) {
         alert(json.message);
     });
 };
