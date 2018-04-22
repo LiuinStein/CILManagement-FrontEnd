@@ -154,3 +154,9 @@ deleteUser = function () {
         alert("user has been deleted");
     })
 };
+
+initPassword = function () {
+    dataExchange('/v1/user/password/', 'PATCH', JSON.stringify({"id":$("#username").val()}), function (status, json) {
+        alert(json.message);
+    });
+};
