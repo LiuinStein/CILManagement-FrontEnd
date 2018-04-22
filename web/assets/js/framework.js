@@ -53,15 +53,10 @@ functionURIMap = {
     "SignUp": "sign-up.html",
     "ModifyMemberInfo": "modify-user.html",
     "ModifyPassword": "set-password.html",
+    "En-DisableAccount": "en-disable-user.html",
     "DeleteAccount": "delete-user.html",
     "InitializePassword": "init-password.html",
     "paper": "https://mail.163.com/"
-//         "DeleteAccount":
-// "ModifyMemberInfo":
-// "ModifyPassword":
-// "InitializePassword":
-// "QueryMemberInfo":
-// "En-DisableAccount"
 };
 
 loadFrameURI = function (name) {

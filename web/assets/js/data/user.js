@@ -175,3 +175,12 @@ changePassword = function () {
         alert(json.message);
     });
 };
+
+userEnabled = function () {
+    dataExchange('/v1/user/', 'PATCH', JSON.stringify({
+        "id": $("#username").val(),
+        "enabled": $("#enabled").val()
+    }), function (status, json) {
+        alert(json.message);
+    });
+};

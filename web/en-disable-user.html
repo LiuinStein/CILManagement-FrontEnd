@@ -39,21 +39,31 @@
                 <div class="col-lg-8 col-md-7" style="margin-left: 18%; margin-right: -25%;">
                     <div class="card">
                         <div class="header">
-                            <h4 class="title">Initialize password</h4>
+                            <h4 class="title">En-disable user</h4>
                         </div>
                         <div class="content">
                             <form>
                                 <div class="row">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>User ID</label>
                                             <input id="username" type="text" class="form-control border-input"
-                                                   placeholder="user id" value="">
+                                                   placeholder="user id" value="" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Accessibility</label>
+                                            <label for="enabled"></label>
+                                            <select id="enabled" class="form-control border-input">
+                                                <option value="false">disable</option>
+                                                <option value="true">enable</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a onclick="initPassword()" class="btn btn-info btn-fill btn-wd">Initialize</a>
+                                    <a onclick="userEnabled()" class="btn btn-info btn-fill btn-wd">Change</a>
                                 </div>
                                 <div class="clearfix"></div>
                             </form>
